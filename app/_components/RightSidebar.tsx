@@ -90,9 +90,9 @@ export default function RightSidebar() {
             className="absolute top-0 text-gray-600 leading-relaxed" 
             style={{ 
               padding: isScrolled ? '8px 18px' : '8px',
-              left: isScrolled ? getScrollLeftOffset() : '0px',
+              left: isScrolled && activeTab !== "profile" ? getScrollLeftOffset() : '0px',
               transition: 'all 0.5s cubic-bezier(0.34, 1.58, 0.64, 1)',
-              backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.9)' : 'transparent',
+              backgroundColor: isScrolled && activeTab !== "profile" ? 'rgba(255, 255, 255, 0.9)' : 'transparent',
               borderRadius: '30px',
               scale: isScrolled ? 0.75 : 1,
             }}

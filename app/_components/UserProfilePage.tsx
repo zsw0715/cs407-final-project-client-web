@@ -4,6 +4,7 @@ import Image from "next/image";
 import GenderIndicator from "./GenderIndicator";
 import GeneralSettings from "./GeneralSettings";
 import FriendRequest from "./FriendRequest";
+import UserFriends from "./UserFriends";
 
 export default function UserProfilePage() {
   return (
@@ -34,6 +35,8 @@ export default function UserProfilePage() {
       <GeneralSettings />
       {/* friend requests */}
       <FriendRequest />
+      {/* user friends */}
+      <UserFriends />
     </div>
   );
 }

@@ -1,20 +1,22 @@
 "use client";
 
 import Image from "next/image";
-import { UserPlus, ContactRound } from "lucide-react";
+import { UserPlus, ContactRound, Handshake, CircleSlash } from "lucide-react";
 
 const DUMMY_FRIEND_REQUESTS = [
   {
     id: 1,
-    name: "Alice Johnson",
-    avatar_url: "/images/user_avatar_2.png",
-    gender: "male"
+    name: "Fu luoluo",
+    avatar_url: "/images/user_avatar_14.png",
+    message: "Hi, let's connect!",
+    gender: "female"
   },
   {
     id: 2,
-    name: "Bob Smith",
-    avatar_url: "/images/user_avatar_3.png",
-    gender: "female"
+    name: "WB",
+    avatar_url: "/images/user_avatar_15.png",
+    message: "Hey, I would like to add you as a friend.",
+    gender: "male"
   },
 ];
 
@@ -62,6 +64,7 @@ export default function FriendRequest() {
               />
               <div style={{ flex: 1, marginLeft: '16px' }}>
                 <h4 style={{ fontSize: '14px', fontWeight: '500', color: '#1f2937', margin: 0 }}>{request.name}</h4>
+                <h4 style={{ fontSize: '11px', fontWeight: '500', color: '#1f2937', margin: 0 }}>{request.message}</h4>
               </div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', justifyContent: 'center' }}>
@@ -83,7 +86,7 @@ export default function FriendRequest() {
                 onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#bbf7d0'}
                 onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#dcfce7'}
               >
-                <ContactRound size={16} style={{ marginRight: '6px' }} />
+                <Handshake size={16} style={{ marginRight: '6px' }} />
                 Accept
               </button>
               <button
@@ -104,7 +107,7 @@ export default function FriendRequest() {
                 onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#fecaca'}
                 onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#fee2e2'}
               >
-                <ContactRound size={16} style={{ marginRight: '6px' }} />
+                <CircleSlash size={16} style={{ marginRight: '6px' }} />
                 Decline
               </button>
             </div>
