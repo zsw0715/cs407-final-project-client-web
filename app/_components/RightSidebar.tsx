@@ -1,12 +1,85 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useActiveTab } from "../_context/ActiveTabContext";
 import { Search } from "lucide-react";
+import PostCard from "./PostCard";
+import "@/app/_style/general.css";
+
+/**
+ * mock data for posts
+ */
+const mockPosts = [
+  {
+    title: "Exploring the Hidden Gems of the City",
+    summary: "Discover lesser-known spots that offer unique experiences away from the usual tourist trails."
+  },
+  {
+    title: "A Foodie's Guide to Local Cuisine",
+    summary: "Dive into the culinary delights of the area with recommendations for must-try dishes and eateries."
+  },
+  {
+    title: "Outdoor Adventures Await",
+    summary: "From hiking trails to water sports, find out where to get your adrenaline fix in nature."
+  },
+    {
+    title: "Exploring the Hidden Gems of the City",
+    summary: "Discover lesser-known spots that offer unique experiences away from the usual tourist trails."
+  },
+  {
+    title: "A Foodie's Guide to Local Cuisine",
+    summary: "Dive into the culinary delights of the area with recommendations for must-try dishes and eateries."
+  },
+  {
+    title: "Outdoor Adventures Await",
+    summary: "From hiking trails to water sports, find out where to get your adrenaline fix in nature."
+  },
+    {
+    title: "Exploring the Hidden Gems of the City",
+    summary: "Discover lesser-known spots that offer unique experiences away from the usual tourist trails."
+  },
+  {
+    title: "A Foodie's Guide to Local Cuisine",
+    summary: "Dive into the culinary delights of the area with recommendations for must-try dishes and eateries."
+  },
+  {
+    title: "Outdoor Adventures Await",
+    summary: "From hiking trails to water sports, find out where to get your adrenaline fix in nature."
+  },
+    {
+    title: "Exploring the Hidden Gems of the City",
+    summary: "Discover lesser-known spots that offer unique experiences away from the usual tourist trails."
+  },
+  {
+    title: "A Foodie's Guide to Local Cuisine",
+    summary: "Dive into the culinary delights of the area with recommendations for must-try dishes and eateries."
+  },
+  {
+    title: "Outdoor Adventures Await",
+    summary: "From hiking trails to water sports, find out where to get your adrenaline fix in nature."
+  }
+];
 
 export default function RightSidebar() {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const { activeTab } = useActiveTab();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrollRef.current) {
+        const scrollTop = scrollRef.current.scrollTop;
+        setIsScrolled(scrollTop > 20);
+      }
+    };
+
+    const scrollElement = scrollRef.current;
+    if (scrollElement) {
+      scrollElement.addEventListener('scroll', handleScroll);
+      return () => scrollElement.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
 
   const getTabDisplayName = () => {
     switch (activeTab) {
@@ -18,6 +91,15 @@ export default function RightSidebar() {
         return "User";
       default:
         return "Unknown";
+    }
+  };
+
+  const getScrollLeftOffset = () => {
+    switch (activeTab) {
+      case "map": return '-145px';
+      case "message": return '-155px';
+      case "profile": return '-105px';
+      default: return '-120px';
     }
   };
 
@@ -48,22 +130,44 @@ export default function RightSidebar() {
         }}
       />
       {/* 内容层 */}
-      <div className="relative z-10 h-full w-full p-6 text-gray-900 font-medium overflow-y-auto flex flex-col">
-        <div className="flex-1" style={{ fontSize: '24px' }}>
+      <div className="relative z-10 h-full w-full text-gray-900 font-medium overflow-y-auto flex flex-col">
+        <div className="flex-1 " style={{ fontSize: '24px', position: 'relative' }}>
           {/* 当前选中标签页 */}
-          <p className="text-gray-600 leading-relaxed" style={{ padding: '8px' }}>
+          <p 
+            className="absolute top-0 text-gray-600 leading-relaxed" 
+            style={{ 
+              padding: isScrolled ? '8px 18px' : '8px',
+              left: isScrolled ? getScrollLeftOffset() : '0px',
+              transition: 'all 0.5s cubic-bezier(0.34, 1.58, 0.64, 1)',
+              backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.9)' : 'transparent',
+              borderRadius: '30px',
+              scale: isScrolled ? 0.75 : 1,
+            }}
+          >
             <span className="font-semibold">{getTabDisplayName()}</span>
           </p>
           {/* main content */}
-          <div className="leading-relaxed">
-            Main content
+          <div 
+            ref={scrollRef}
+            className="leading-relaxed"
+            style={{ 
+              overflowY: 'auto',
+              height: 'calc(100vh - 165px)',
+              borderRadius: '24px',
+              paddingBottom: '150px',
+            }}>
+            {mockPosts.map((post, index) => (
+              <PostCard key={index} title={post.title} summary={post.summary} index={index} />
+            ))}
           </div>
         </div>
         {/* search input 固定在底部 */}
         <div 
-          className="mt-auto" 
           style={{ 
-            position: "relative",
+            position: "absolute",
+            bottom: "1px",
+            left: "3px",
+            width: "calc(100% - 6px)",
             transform: activeTab === "profile" ? "translateY(150%) scale(0.9)" : "translateY(0%)",
             transition: "transform 0.5s cubic-bezier(0.34, 1.58, 0.64, 1)"
           }}
