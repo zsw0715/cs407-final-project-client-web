@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import FooterNav from "./_components/FooterNav";
+import RightSidebar from "./_components/RightSidebar";
 
 export default function Home() {
   const mapContainer = useRef<HTMLDivElement | null>(null);
@@ -19,10 +20,6 @@ export default function Home() {
       center: [-89.4, 43.07],
       zoom: 12,
     });
-
-    map.current.addControl(new mapboxgl.NavigationControl(), "top-right");
-
-    new mapboxgl.Marker().setLngLat([-89.4, 43.07]).addTo(map.current);
 
     return () => {
       if (map.current) {
@@ -42,6 +39,8 @@ export default function Home() {
           className="flex-1"
           style={{ overflow: "hidden" }}
         />
+        {/* right sidebar */}
+        <RightSidebar />
         {/* footer navigation */}
         <FooterNav />
       </main>
