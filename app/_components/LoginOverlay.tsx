@@ -29,6 +29,7 @@ export default function LoginOverlay({ showOverlay, setShowOverlay }: LoginOverl
       // Handle register logic
       console.log('Registering with', { username, password });
     }
+    
     // For demo purposes, just close the overlay
     setShowOverlay(false);
   }
