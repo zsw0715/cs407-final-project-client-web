@@ -60,7 +60,14 @@ export default function RightSidebar() {
           </div>
         </div>
         {/* search input 固定在底部 */}
-        <div className="mt-auto" style={{ position: "relative" }}>
+        <div 
+          className="mt-auto" 
+          style={{ 
+            position: "relative",
+            transform: activeTab === "profile" ? "translateY(150%) scale(0.9)" : "translateY(0%)",
+            transition: "transform 0.5s cubic-bezier(0.34, 1.58, 0.64, 1)"
+          }}
+        >
           <Search 
             style={{
               position: "absolute",
