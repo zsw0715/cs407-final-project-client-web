@@ -1,11 +1,70 @@
 "use client";
 
+/**
+ * mock data for posts
+ */
+const mockPosts = [
+  {
+    title: "Exploring the Hidden Gems of the City",
+    summary: "Discover lesser-known spots that offer unique experiences away from the usual tourist trails."
+  },
+  {
+    title: "A Foodie's Guide to Local Cuisine",
+    summary: "Dive into the culinary delights of the area with recommendations for must-try dishes and eateries."
+  },
+  {
+    title: "Outdoor Adventures Await",
+    summary: "From hiking trails to water sports, find out where to get your adrenaline fix in nature."
+  },
+  {
+    title: "Exploring the Hidden Gems of the City",
+    summary: "Discover lesser-known spots that offer unique experiences away from the usual tourist trails."
+  },
+  {
+    title: "A Foodie's Guide to Local Cuisine",
+    summary: "Dive into the culinary delights of the area with recommendations for must-try dishes and eateries."
+  },
+  {
+    title: "Outdoor Adventures Await",
+    summary: "From hiking trails to water sports, find out where to get your adrenaline fix in nature."
+  },
+  {
+    title: "Exploring the Hidden Gems of the City",
+    summary: "Discover lesser-known spots that offer unique experiences away from the usual tourist trails."
+  },
+  {
+    title: "A Foodie's Guide to Local Cuisine",
+    summary: "Dive into the culinary delights of the area with recommendations for must-try dishes and eateries."
+  },
+  {
+    title: "Outdoor Adventures Await",
+    summary: "From hiking trails to water sports, find out where to get your adrenaline fix in nature."
+  },
+  {
+    title: "Exploring the Hidden Gems of the City",
+    summary: "Discover lesser-known spots that offer unique experiences away from the usual tourist trails."
+  },
+  {
+    title: "A Foodie's Guide to Local Cuisine",
+    summary: "Dive into the culinary delights of the area with recommendations for must-try dishes and eateries."
+  },
+  {
+    title: "Outdoor Adventures Await",
+    summary: "From hiking trails to water sports, find out where to get your adrenaline fix in nature."
+  }
+];
+
+import PostCard from "./PostCard";
+
 export default function PostFeed() {
   return (
-    <div className="w-64 bg-white border-l border-gray-200 p-4">
-      <h2 className="text-lg font-semibold mb-4">Post Feed</h2>
-      {/* Add your post feed content here */}
-    </div>
+    <>
+      {
+        mockPosts.map((post, index) => (
+          <PostCard key={index} title={post.title} summary={post.summary} index={index} />
+        ))
+      }
+    </>
   );
 }
 

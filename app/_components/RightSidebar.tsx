@@ -5,60 +5,7 @@ import { useActiveTab } from "../_context/ActiveTabContext";
 import { Search } from "lucide-react";
 import PostCard from "./PostCard";
 import "@/app/_style/general.css";
-
-/**
- * mock data for posts
- */
-const mockPosts = [
-  {
-    title: "Exploring the Hidden Gems of the City",
-    summary: "Discover lesser-known spots that offer unique experiences away from the usual tourist trails."
-  },
-  {
-    title: "A Foodie's Guide to Local Cuisine",
-    summary: "Dive into the culinary delights of the area with recommendations for must-try dishes and eateries."
-  },
-  {
-    title: "Outdoor Adventures Await",
-    summary: "From hiking trails to water sports, find out where to get your adrenaline fix in nature."
-  },
-    {
-    title: "Exploring the Hidden Gems of the City",
-    summary: "Discover lesser-known spots that offer unique experiences away from the usual tourist trails."
-  },
-  {
-    title: "A Foodie's Guide to Local Cuisine",
-    summary: "Dive into the culinary delights of the area with recommendations for must-try dishes and eateries."
-  },
-  {
-    title: "Outdoor Adventures Await",
-    summary: "From hiking trails to water sports, find out where to get your adrenaline fix in nature."
-  },
-    {
-    title: "Exploring the Hidden Gems of the City",
-    summary: "Discover lesser-known spots that offer unique experiences away from the usual tourist trails."
-  },
-  {
-    title: "A Foodie's Guide to Local Cuisine",
-    summary: "Dive into the culinary delights of the area with recommendations for must-try dishes and eateries."
-  },
-  {
-    title: "Outdoor Adventures Await",
-    summary: "From hiking trails to water sports, find out where to get your adrenaline fix in nature."
-  },
-    {
-    title: "Exploring the Hidden Gems of the City",
-    summary: "Discover lesser-known spots that offer unique experiences away from the usual tourist trails."
-  },
-  {
-    title: "A Foodie's Guide to Local Cuisine",
-    summary: "Dive into the culinary delights of the area with recommendations for must-try dishes and eateries."
-  },
-  {
-    title: "Outdoor Adventures Await",
-    summary: "From hiking trails to water sports, find out where to get your adrenaline fix in nature."
-  }
-];
+import PostFeed from "./PostFeed";
 
 export default function RightSidebar() {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -156,9 +103,7 @@ export default function RightSidebar() {
               borderRadius: '24px',
               paddingBottom: '150px',
             }}>
-            {mockPosts.map((post, index) => (
-              <PostCard key={index} title={post.title} summary={post.summary} index={index} />
-            ))}
+            <PostFeed />
           </div>
         </div>
         {/* search input 固定在底部 */}
