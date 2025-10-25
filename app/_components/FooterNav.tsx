@@ -2,12 +2,10 @@
 
 import Image from "next/image";
 import { Map, MessageCircle } from "lucide-react";
-import { useState } from "react";
-
-type TabType = 'map' | 'message' | 'profile';
+import { useActiveTab } from "../_context/ActiveTabContext";
 
 export default function FooterNav() {
-    const [activeTab, setActiveTab] = useState<TabType>('map');
+    const { activeTab, setActiveTab } = useActiveTab();
 
     const getSliderPosition = () => {
         switch (activeTab) {
