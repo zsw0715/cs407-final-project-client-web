@@ -1,3 +1,14 @@
+# CS407 Final Project Client (Web)
+
+## Introduction
+
+This is the client(web) for the CS407 Final Project.  
+It includes <TODO>  
+
+For detailed project information, please refer to our [Project Proposal](./CS407_Project_Proposal.pdf).
+
+---
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
