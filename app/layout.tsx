@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ActiveTabProvider } from "./_context/ActiveTabContext";
 import { SidebarProvider } from "./_context/SidebarContext";
+import { AuthProvider } from "./_context/AuthContext";
+import { WsProvider } from "./_context/WsContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,11 +31,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}
       >
-        <ActiveTabProvider>
-          <SidebarProvider>
-            {children}
-          </SidebarProvider>
-        </ActiveTabProvider>
+        <AuthProvider>
+          <WsProvider>
+            <ActiveTabProvider>
+              <SidebarProvider>
+                {children}
+              </SidebarProvider>
+            </ActiveTabProvider>
+          </WsProvider>
+        </AuthProvider>
       </body>
     </html>
   );
