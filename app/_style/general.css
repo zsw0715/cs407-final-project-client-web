@@ -17,3 +17,23 @@
   animation-timeline: view();
   animation-range: entry 0 cover 25%;
 }
+
+@keyframes level-reveal {
+  0% {
+    opacity: 0;
+    /* clip-path: inset(100% 100% 0% 100%); */
+    transform: translateY(40px) scale(0.8);
+  }
+
+  100% {
+    opacity: 1;
+    /* clip-path: inset(0 0 0 0); */
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-level-reveal-0 {
+  animation: level-reveal linear;
+  animation-timeline: view();
+  animation-range: entry 0 cover 15%;
+}

@@ -7,6 +7,7 @@ interface ConversationItemProps {
     conv_id: number;
     conv_type: string;
     last_msg_text: string;
+    title?: string;
     participants: {
       user_id: number;
       username: string;
@@ -39,30 +40,9 @@ export default function ConversationItem({ conversation, index, onClick }: Conve
     }
   };
 
-  // 获取显示的用户信息（群聊显示多个用户，私聊显示对方）
-  const getDisplayInfo = () => {
-    if (conv_type === 'group') {
-      return {
-        name: `群聊 (${participants.length}人)`,
-        avatar: participants[0]?.avatar_url || '/images/default-avatar.png',
-        isGroup: true
-      };
-    } else {
-      // 私聊显示对方信息
-      const otherUser = participants[0]; // 假设第一个是对方
-      return {
-        name: otherUser?.username || '未知用户',
-        avatar: otherUser?.avatar_url || '/images/default-avatar.png',
-        isGroup: false
-      };
-    }
-  };
-
-  const displayInfo = getDisplayInfo();
-
   return (
     <div
-      className="animate-level-reveal"
+      className="animate-level-reveal-0"
       style={{
         backgroundColor: 'rgba(255, 255, 255, 0.25)',
         backdropFilter: 'blur(10px)',
@@ -93,37 +73,63 @@ export default function ConversationItem({ conversation, index, onClick }: Conve
       }}>
         {/* 头像部分 */}
         <div style={{ position: 'relative' }}>
-          <img
-            src={displayInfo.avatar}
-            alt={displayInfo.name}
-            style={{
+          {conversation.conv_type === 'group' ? (
+            // 群组4宫格头像
+            <div style={{
               width: '48px',
               height: '48px',
-              borderRadius: '50%',
-              objectFit: 'cover',
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gridTemplateRows: '1fr 1fr',
+              gap: '1px',
+              borderRadius: '15px',
+              overflow: 'hidden',
               border: '2px solid rgba(255, 255, 255, 0.3)'
-            }}
-          />
-          {/* 群聊标识 */}
-          {displayInfo.isGroup && (
-            <div style={{
-              position: 'absolute',
-              bottom: '-2px',
-              right: '-2px',
-              width: '16px',
-              height: '16px',
-              backgroundColor: '#10b981',
-              borderRadius: '50%',
-              border: '2px solid white',
-              fontSize: '8px',
-              color: 'white',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontWeight: 'bold'
             }}>
-              {participants.length}
+              {participants.slice(0, 4).map((participant, idx) => (
+                <img
+                  key={participant.user_id}
+                  src={participant.avatar_url || '/images/default-avatar.png'}
+                  alt={participant.username || '未知用户'}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover'
+                  }}
+                />
+              ))}
+              {/* 如果参与者少于4个，用空白占位 */}
+              {Array.from({ length: Math.max(0, 4 - participants.length) }).map((_, idx) => (
+                <div
+                  key={`empty-${idx}`}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    backgroundColor: 'rgba(209, 213, 219, 0.3)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '10px',
+                    color: '#9ca3af'
+                  }}
+                >
+                  +
+                </div>
+              ))}
             </div>
+          ) : (
+            // 单人头像
+            <img
+              src={conversation.participants[0]?.avatar_url || '/images/default-avatar.png'}
+              alt={conversation.participants[0]?.username || '未知用户'}
+              style={{
+                width: '48px',
+                height: '48px',
+                borderRadius: '50%',
+                objectFit: 'cover',
+                border: '2px solid rgba(255, 255, 255, 0.3)'
+              }}
+            />
           )}
         </div>
 
@@ -144,7 +150,9 @@ export default function ConversationItem({ conversation, index, onClick }: Conve
               textOverflow: 'ellipsis',
               whiteSpace: 'nowrap'
             }}>
-              {displayInfo.name}
+              {conversation.conv_type === 'group'
+                ? (conversation.title || 'Group Chat')
+                : conversation.participants[0]?.username || 'Unknown User'}
             </h3>
             <span style={{
               fontSize: '12px',

@@ -13,8 +13,8 @@ const mockConversations = [
     participants: [
       {
         user_id: 2,
-        username: "Alice",
-        avatar_url: "/images/user_avatar_3.png",
+        username: "Shiya Su",
+        avatar_url: "/images/user_avatar_4.png",
       }
     ],
     created_at: "2024-07-10 09:00:00",
@@ -27,7 +27,7 @@ const mockConversations = [
     participants: [
       {
         user_id: 3,
-        username: "Bob",
+        username: "Boxiang",
         avatar_url: "/images/user_avatar_1.png",
       }
     ],
@@ -37,23 +37,29 @@ const mockConversations = [
   {
     conv_id: 3,
     conv_type: "group",
+    title: "CS407 Project Team",
     last_msg_text: "Let's meet at the coffee shop",
     participants: [
       {
         user_id: 4,
         username: "Charlie",
-        avatar_url: "/images/user_avatar_2.png",
+        avatar_url: "/images/user_avatar.png",
       },
       {
         user_id: 5,
         username: "Diana",
-        avatar_url: "/images/user_avatar_4.png",
+        avatar_url: "/images/user_avatar_9.png",
       },
       {
         user_id: 6,
         username: "Eve",
-        avatar_url: "/images/user_avatar_5.png",
-      }
+        avatar_url: "/images/user_avatar_8.png",
+      },
+      {
+        user_id: 7,
+        username: "Eve",
+        avatar_url: "/images/user_avatar_0.png",
+      },
     ],
     created_at: "2024-07-08 10:30:00",
     updated_at: "2024-07-13 16:20:00",
@@ -65,7 +71,7 @@ const mockConversations = [
     participants: [
       {
         user_id: 7,
-        username: "Frank",
+        username: "Tony Wei",
         avatar_url: "/images/user_avatar_6.png",
       }
     ],
@@ -75,22 +81,18 @@ const mockConversations = [
   {
     conv_id: 5,
     conv_type: "group",
+    title: "CS544 Study",
     last_msg_text: "Great job everyone! 👏",
     participants: [
       {
         user_id: 8,
         username: "Grace",
-        avatar_url: "/images/user_avatar_7.png",
+        avatar_url: "/images/user_avatar.png",
       },
       {
         user_id: 9,
         username: "Henry",
-        avatar_url: "/images/user_avatar_8.png",
-      },
-      {
-        user_id: 10,
-        username: "Ivy",
-        avatar_url: "/images/user_avatar_9.png",
+        avatar_url: "/images/user_avatar_7.png",
       },
       {
         user_id: 11,
@@ -108,8 +110,8 @@ const mockConversations = [
     participants: [
       {
         user_id: 12,
-        username: "Kate",
-        avatar_url: "/images/user_avatar_11.png",
+        username: "P(x,y)",
+        avatar_url: "/images/user_avatar_0.png",
       }
     ],
     created_at: "2024-07-09 15:45:00",
@@ -122,7 +124,7 @@ const mockConversations = [
     participants: [
       {
         user_id: 13,
-        username: "Leo",
+        username: "Boyuan Wang",
         avatar_url: "/images/user_avatar_12.png",
       }
     ],
@@ -130,20 +132,43 @@ const mockConversations = [
     updated_at: "2024-07-09 10:30:00",
   },
   {
-    conv_id: 8,
-    conv_type: "group",
+    conv_id: 10,
+    conv_type: "single",
     last_msg_text: "Weekend plans?",
     participants: [
       {
         user_id: 14,
-        username: "Mia",
+        username: "Tianyuan Ru",
         avatar_url: "/images/user_avatar_13.png",
       },
+    ],
+    created_at: "2024-07-06 19:30:00",
+    updated_at: "2024-07-08 22:45:00",
+  },
+    {
+    conv_id: 11,
+    conv_type: "single",
+    last_msg_text: "But I feel like I've over-studied a bit.",
+    participants: [
       {
-        user_id: 15,
-        username: "Noah",
-        avatar_url: "/images/user_avatar_14.png",
+        user_id: 13,
+        username: "Fu Liye",
+        avatar_url: "/images/user_avatar_9.png",
       }
+    ],
+    created_at: "2024-07-07 12:00:00",
+    updated_at: "2024-07-09 10:30:00",
+  },
+  {
+    conv_id: 12,
+    conv_type: "single",
+    last_msg_text: "Holiday trip ideas?",
+    participants: [
+      {
+        user_id: 14,
+        username: "Enhui Zhao",
+        avatar_url: "/images/user_avatar_8.png",
+      },
     ],
     created_at: "2024-07-06 19:30:00",
     updated_at: "2024-07-08 22:45:00",
