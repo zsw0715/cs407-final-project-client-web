@@ -97,7 +97,9 @@ export default function RightSidebar() {
               scale: isScrolled ? 0.75 : 1,
             }}
           >
-            <span className="font-semibold">{getTabDisplayName()}</span>
+            {activeTab !== "profile" && (
+              <span className="font-semibold">{getTabDisplayName()}</span>
+            )}
           </p>
           {/* main content */}
           <div 
