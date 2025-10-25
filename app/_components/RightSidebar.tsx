@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useActiveTab } from "../_context/ActiveTabContext";
+import { useSidebar } from "../_context/SidebarContext";
 import { Search } from "lucide-react";
 import "@/app/_style/general.css";
 import PostFeed from "./PostFeed";
@@ -9,7 +10,7 @@ import ConversationList from "./ConversationList";
 import UserProfilePage from "./UserProfilePage";
 
 export default function RightSidebar() {
-  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+  const { isExpanded, setIsExpanded } = useSidebar();
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const { activeTab } = useActiveTab();

@@ -1,6 +1,8 @@
 "use client";
 
+import { useSidebar } from "../_context/SidebarContext";
 import ConversationItem from "./ConversationItem";
+
 
 /**
  * Mock data for conversation list
@@ -176,6 +178,10 @@ const mockConversations = [
 ];
 
 export default function ConversationList() {
+  const { isExpanded, setIsExpanded } = useSidebar();
+
+  
+
   return (
     <>
       {mockConversations.map((conv, index) => (
@@ -184,7 +190,7 @@ export default function ConversationList() {
           conversation={conv} 
           index={index}
           onClick={() => {
-            console.log('点击了会话:', conv.conv_id);
+            setIsExpanded(!isExpanded)
           }}
         />
       ))}

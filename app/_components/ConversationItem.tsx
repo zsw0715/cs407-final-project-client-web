@@ -1,6 +1,7 @@
 "use client";
 
 import "@/app/_style/general.css";
+import { useSidebar } from "../_context/SidebarContext";
 
 interface ConversationItemProps {
   conversation: {
@@ -21,7 +22,8 @@ interface ConversationItemProps {
 }
 
 export default function ConversationItem({ conversation, index, onClick }: ConversationItemProps) {
-  const { participants, last_msg_text, updated_at, conv_type } = conversation;
+  const { participants, last_msg_text, updated_at } = conversation;
+  const { isExpanded } = useSidebar();
   
   // 格式化时间显示
   const formatTime = (dateString: string) => {
