@@ -3,9 +3,10 @@
 import { useState, useRef, useEffect } from "react";
 import { useActiveTab } from "../_context/ActiveTabContext";
 import { Search } from "lucide-react";
-import PostCard from "./PostCard";
 import "@/app/_style/general.css";
 import PostFeed from "./PostFeed";
+import ConversationList from "./ConversationList";
+import UserProfilePage from "./UserProfilePage";
 
 export default function RightSidebar() {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -58,7 +59,7 @@ export default function RightSidebar() {
         padding: isExpanded ? "24px" : "13px",
         backgroundColor: isExpanded
           ? "rgba(255, 255, 255, 0.55)"
-          : "rgba(255, 255, 255, 0.25)",
+          : "rgba(255, 255, 255, 0.15)",
         backdropFilter: isExpanded ? "blur(20px)" : "blur(12px)",
         borderRadius: isExpanded ? "45px" : "42px",
         transition: "all 0.6s cubic-bezier(0.34, 1.28, 0.64, 1)",
@@ -102,8 +103,16 @@ export default function RightSidebar() {
               height: 'calc(100vh - 165px)',
               borderRadius: '24px',
               paddingBottom: '150px',
-            }}>
-            <PostFeed />
+          }}>
+            {
+              activeTab === "map" && <PostFeed />
+            }
+            {
+              activeTab === "message" && <ConversationList />
+            }
+            {
+              activeTab === "profile" && <UserProfilePage />
+            }
           </div>
         </div>
         {/* search input 固定在底部 */}

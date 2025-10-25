@@ -46,7 +46,7 @@ export default function PostCard({
         backdropFilter: 'blur(10px)',
         border: '1px solid #d1d5db',
         borderColor: 'rgba(209, 213, 219, 0.5)',
-        borderRadius: '24px',
+        borderRadius: '32px',
         padding: '14px',
         marginBottom: '10px',
         boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
