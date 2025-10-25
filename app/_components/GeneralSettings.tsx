@@ -1,8 +1,24 @@
 "use client";
 
 import { UserCog, SunMoon, LogOut, ArrowRight } from "lucide-react";
+import { useAuth } from "../_context/AuthContext";
+import { useOverlay } from "../_context/OverlayContext";
 
 export default function GeneralSettings() {
+  const { logoutUser } = useAuth();
+  const { openOverlay } = useOverlay();
+
+  const handleLogout = async () => {
+    try {
+      await logoutUser();
+      console.log("✅ 已登出");
+      // 登出成功后显示登录overlay
+      openOverlay();
+    } catch (err) {
+      console.error("登出失败", err);
+    }
+  };
+
   return (
     <div
       className="animate-level-reveal"
@@ -29,7 +45,7 @@ export default function GeneralSettings() {
         <span className="text-xs" style={{ color: '#a16207', marginLeft: 'auto', verticalAlign: 'middle' }} >暂时不可用</span>
       </div>
       {/* logout */}
-      <div className="w-full flex py-1 pl-4 pr-4 rounded-2xl items-center mb-2">
+      <div className="w-full flex py-1 pl-4 pr-4 rounded-2xl items-center mb-2" onClick={handleLogout} style={{ cursor: 'pointer' }}>
         <LogOut size={20} style={{ color: '#a16207', verticalAlign: 'middle', marginRight: '12px' }} />
         <span className="text-sm font-medium" style={{ color: '#a16207', verticalAlign: 'middle' }}>Log Out</span>
       </div>

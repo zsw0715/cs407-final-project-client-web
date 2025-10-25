@@ -3,13 +3,9 @@
 import { Key, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useAuth } from "../_context/AuthContext";
+import { useOverlay } from "../_context/OverlayContext";
 
-interface LoginOverlayProps {
-  showOverlay: boolean;
-  setShowOverlay: (show: boolean) => void;
-}
-
-export default function LoginOverlay({ showOverlay, setShowOverlay }: LoginOverlayProps) {
+export default function LoginOverlay() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [activeTab, setActiveTab] = useState<"login" | "register">("login");
@@ -17,15 +13,16 @@ export default function LoginOverlay({ showOverlay, setShowOverlay }: LoginOverl
 
   // 从 AuthContext 获取登录逻辑
   const { loginUser, registerUser, isLoading } = useAuth();
+  const { showOverlay, closeOverlay } = useOverlay();
 
   const { at, uid } = useAuth();
 
   // ✅ 一旦检测到已登录，就关闭 overlay
   useEffect(() => {
     if (at && uid && showOverlay) {
-      setShowOverlay(false);
+      closeOverlay();
     }
-  }, [at, uid, showOverlay, setShowOverlay]);
+  }, [at, uid, showOverlay, closeOverlay]);
 
   if (at && uid) return null; // 用户已登录就不渲染 Overlay
 
@@ -61,7 +58,7 @@ export default function LoginOverlay({ showOverlay, setShowOverlay }: LoginOverl
 
       // 自动关闭 overlay（登录成功后）
       if (activeTab === "login") {
-        setTimeout(() => setShowOverlay(false), 500);
+        setTimeout(() => closeOverlay(), 500);
       }
     } catch (err: any) {
       setStatusMsg(`❌ ${err.message || "Failed, please try again."}`);

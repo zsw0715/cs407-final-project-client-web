@@ -1,15 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import FooterNav from "./_components/FooterNav";
 import RightSidebar from "./_components/RightSidebar";
 import LoginOverlay from "./_components/LoginOverlay";
+import { useOverlay } from "./_context/OverlayContext";
 
 export default function Home() {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const map = useRef<mapboxgl.Map | null>(null);
-  const [showOverlay, setShowOverlay] = useState(true);
+  const { showOverlay } = useOverlay();
 
   useEffect(() => {
     if (!mapContainer.current || map.current) return;
@@ -53,7 +54,7 @@ export default function Home() {
 
       {/* Login Overlay */}
       {showOverlay && (
-        <LoginOverlay showOverlay={showOverlay} setShowOverlay={setShowOverlay} />
+        <LoginOverlay />
       )}
     </div>
   );

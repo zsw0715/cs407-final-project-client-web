@@ -5,6 +5,7 @@ import { ActiveTabProvider } from "./_context/ActiveTabContext";
 import { SidebarProvider } from "./_context/SidebarContext";
 import { AuthProvider } from "./_context/AuthContext";
 import { WsProvider } from "./_context/WsContext";
+import { OverlayProvider } from "./_context/OverlayContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,13 +33,15 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}
       >
         <AuthProvider>
-          <WsProvider>
-            <ActiveTabProvider>
-              <SidebarProvider>
-                {children}
-              </SidebarProvider>
-            </ActiveTabProvider>
-          </WsProvider>
+          <OverlayProvider>
+            <WsProvider>
+              <ActiveTabProvider>
+                <SidebarProvider>
+                  {children}
+                </SidebarProvider>
+              </ActiveTabProvider>
+            </WsProvider>
+          </OverlayProvider>
         </AuthProvider>
       </body>
     </html>
