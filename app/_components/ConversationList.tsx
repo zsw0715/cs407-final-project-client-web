@@ -178,10 +178,8 @@ const mockConversations = [
 ];
 
 export default function ConversationList() {
-  const { isExpanded, setIsExpanded } = useSidebar();
-
+  const { selectedConversationId } = useSidebar();
   
-
   return (
     <>
       {mockConversations.map((conv, index) => (
@@ -190,7 +188,7 @@ export default function ConversationList() {
           conversation={conv} 
           index={index}
           onClick={() => {
-            setIsExpanded(!isExpanded)
+            console.log(`Selected conversation ID: ${conv.conv_id}`);
           }}
         />
       ))}

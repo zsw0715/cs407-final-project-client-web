@@ -7,10 +7,11 @@ import { Search } from "lucide-react";
 import "@/app/_style/general.css";
 import PostFeed from "./PostFeed";
 import ConversationList from "./ConversationList";
+import ConversationView from "./ConversationView";
 import UserProfilePage from "./UserProfilePage";
 
 export default function RightSidebar() {
-  const { isExpanded, setIsExpanded } = useSidebar();
+  const { isExpanded, setIsExpanded, selectedConversationId } = useSidebar();
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const { activeTab } = useActiveTab();
@@ -52,19 +53,22 @@ export default function RightSidebar() {
     }
   };
 
+  // 判断是否应该扩展 sidebar
+  const shouldExpand = isExpanded || (activeTab === "message" && selectedConversationId !== null);
+
   return (
     <div
       className="absolute right-0 top-0 h-[calc(100%-1rem)] border border-gray-200 m-2 shadow-lg"
       style={{
-        width: isExpanded ? "888px" : "312px",
-        padding: isExpanded ? "24px" : "13px",
-        backgroundColor: isExpanded
+        width: shouldExpand ? "888px" : "312px",
+        padding: "13px",
+        backgroundColor: shouldExpand
           ? "rgba(255, 255, 255, 0.55)"
           : "rgba(255, 255, 255, 0.15)",
-        backdropFilter: isExpanded ? "blur(20px)" : "blur(12px)",
-        borderRadius: isExpanded ? "45px" : "42px",
+        backdropFilter: shouldExpand ? "blur(20px)" : "blur(12px)",
+        borderRadius: shouldExpand ? "45px" : "42px",
         transition: "all 0.6s cubic-bezier(0.34, 1.28, 0.64, 1)",
-        transform: isExpanded
+        transform: shouldExpand
           ? "scale(1.01) rotateY(-1deg)"
           : "scale(1) rotateY(1.5deg)",
       }}
@@ -74,7 +78,7 @@ export default function RightSidebar() {
         className="absolute inset-0 rounded-[45px] z-0"
         style={{
           background: "linear-gradient(135deg, rgba(255,255,255,0.25), rgba(255,255,255,0.05))",
-          backdropFilter: isExpanded ? "blur(22px)" : "blur(12px)",
+          backdropFilter: shouldExpand ? "blur(22px)" : "blur(12px)",
           zIndex: 0,
         }}
       />
@@ -105,15 +109,39 @@ export default function RightSidebar() {
               borderRadius: '24px',
               paddingBottom: '150px',
           }}>
-            {
-              activeTab === "map" && <PostFeed />
-            }
-            {
-              activeTab === "message" && <ConversationList />
-            }
-            {
-              activeTab === "profile" && <UserProfilePage />
-            }
+            {activeTab === "map" && <PostFeed />}
+            {activeTab === "message" && (
+              activeTab === "message" && selectedConversationId ? (
+                // 选中会话时显示并排布局
+                <div style={{ 
+                  display: 'flex',
+                  height: 'calc(100vh - 165px)',
+                  gap: '16px',
+                  paddingBottom: '0'
+                }}>
+                  {/* 左侧会话列表，保持原来的宽度 */}
+                  <div style={{ 
+                    width: '300px',
+                    flexShrink: 0,
+                    overflowY: 'auto',
+                    paddingBottom: '150px',
+                  }}>
+                    <ConversationList />
+                  </div>
+                  {/* 右侧会话视图 */}
+                  <div style={{ 
+                    flex: 1,
+                    minWidth: 0
+                  }}>
+                    <ConversationView conversationId={selectedConversationId} />
+                  </div>
+                </div>
+              ) : (
+                // 未选中会话时只显示会话列表
+                <ConversationList />
+              )
+            )}
+            {activeTab === "profile" && <UserProfilePage />}
           </div>
         </div>
         {/* search input 固定在底部 */}

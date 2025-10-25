@@ -35,7 +35,7 @@ export default function FooterNav() {
             />
             {/* Map控制 */}
             <div
-                className={`flex items-center justify-center rounded-full px-4 py-2 relative z-10 transition-colors duration-200 ${activeTab === 'map' ? 'text-blue-600' : 'text-gray-600'}`}
+                className={`flex items-center justify-center rounded-full px-4 py-2 relative z-10 transition-colors duration-200 ${activeTab === 'map' ? 'text-[#636ef1]' : 'text-gray-600'}`}
                 onClick={() => setActiveTab('map')}
             >
                 <Map className="inline-block w-6 h-6" />
@@ -43,7 +43,7 @@ export default function FooterNav() {
 
             {/* Message控制 */}
             <div
-                className={`flex items-center justify-center rounded-full px-4 py-2 relative z-10 transition-colors duration-200 ${activeTab === 'message' ? 'text-blue-600' : 'text-gray-600'}`}
+                className={`flex items-center justify-center rounded-full px-4 py-2 relative z-10 transition-colors duration-200 ${activeTab === 'message' ? 'text-[#636ef1]' : 'text-gray-600'}`}
                 onClick={() => setActiveTab('message')}
             >
                 <MessageCircle className="inline-block w-6 h-6" />
@@ -54,7 +54,7 @@ export default function FooterNav() {
                 className={`relative flex items-center justify-center rounded-full px-4 z-10 transition-all duration-300 ${activeTab === 'profile' ? 'scale-110' : 'scale-100'}`}
                 onClick={() => setActiveTab('profile')}
             >
-                <div className={`absolute rounded-full transition-all duration-300 w-[33px] h-[33px] ${activeTab !== 'profile' && 'border-2 border-gray-300'}`} />
+                <div className={`absolute rounded-full transition-all duration-300 w-[33px] h-[33px] ${activeTab === 'profile' && 'border-2 border-[#636ef1]'}`} />
                 <Image
                     src="/images/user_avatar.png"
                     alt="User Avatar"
