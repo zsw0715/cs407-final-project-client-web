@@ -29,7 +29,7 @@ export default function LoginOverlay({ showOverlay, setShowOverlay }: LoginOverl
       // Handle register logic
       console.log('Registering with', { username, password });
     }
-    
+
     // For demo purposes, just close the overlay
     setShowOverlay(false);
   }
@@ -42,9 +42,10 @@ export default function LoginOverlay({ showOverlay, setShowOverlay }: LoginOverl
       <div
         className="bg-[#F8F4EE] relative backdrop-blur-sm shadow-lg transition-all duration-300"
         style={{
-          borderRadius: "36px",
-          padding: "22px 26px 26px 26px",
-          width: "400px",
+          borderRadius: "46px",
+          padding: "26px 26px 26px 26px",
+          width: "405px",
+          border: "2px solid rgba(222, 184, 135, 0.3)",
           // height: "400px",
         }}>
         <p
