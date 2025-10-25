@@ -77,7 +77,7 @@ export default function RightSidebar() {
         }}
       />
       {/* 内容层 */}
-      <div className="relative z-10 h-full w-full text-gray-900 font-medium overflow-y-auto flex flex-col">
+      <div className="relative z-10 h-full w-full text-gray-900 font-medium flex flex-col">
         <div className="flex-1 " style={{ fontSize: '24px', position: 'relative' }}>
           {/* 当前选中标签页 */}
           <p 
@@ -147,7 +147,7 @@ export default function RightSidebar() {
             onFocus={(e) => {
               e.target.style.borderColor = "#6366f1";
               e.target.style.boxShadow = "0 0 0 2px rgba(99, 102, 241, 0.15)";
-              e.target.style.backgroundColor = "rgba(255, 255, 255, 0.65)";
+              e.target.style.backgroundColor = "rgba(255, 255, 255, 0.95)";
               e.target.style.backdropFilter = "blur(12px)";
             }}
             onBlur={(e) => {
