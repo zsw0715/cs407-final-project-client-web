@@ -4,10 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import FooterNav from "./_components/FooterNav";
 import RightSidebar from "./_components/RightSidebar";
+import LoginOverlay from "./_components/LoginOverlay";
 
 export default function Home() {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const map = useRef<mapboxgl.Map | null>(null);
+  const [showOverlay, setShowOverlay] = useState(true);
 
   useEffect(() => {
     if (!mapContainer.current || map.current) return;
@@ -32,7 +34,11 @@ export default function Home() {
   return (
     <div className="h-full w-full bg-[#F8F4EE] flex items-center justify-center">
       {/* main content */}
-      <main className="relative w-7xl h-[720px] bg-gray-200 rounded-[48px] shadow-lg overflow-hidden flex flex-col">
+      <main 
+        className={`relative w-7xl h-[720px] bg-gray-200 rounded-[48px] shadow-lg overflow-hidden flex flex-col transition-transform duration-700 ease-out ${
+          showOverlay ? 'scale-110' : 'scale-100'
+        }`}
+      >
         {/* map */}
         <div
           ref={mapContainer}
@@ -44,6 +50,11 @@ export default function Home() {
         {/* footer navigation */}
         <FooterNav />
       </main>
+
+      {/* Login Overlay */}
+      {showOverlay && (
+        <LoginOverlay showOverlay={showOverlay} setShowOverlay={setShowOverlay} />
+      )}
     </div>
   );
 }
