@@ -188,7 +188,7 @@ export default function ConversationList() {
           conversation={conv} 
           index={index}
           onClick={() => {
-            console.log(`Selected conversation ID: ${conv.conv_id}`);
+            console.log(`Selected conversation ID: ${selectedConversationId}`);
           }}
         />
       ))}

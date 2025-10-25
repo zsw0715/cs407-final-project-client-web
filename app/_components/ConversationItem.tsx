@@ -83,6 +83,7 @@ export default function ConversationItem({ conversation, index, onClick }: Conve
         cursor: 'pointer',
         transition: 'all 0.2s ease',
         marginRight: shouldExpand ? '18px' : '0px',
+        width: "284px",
       }}
       onClick={handleClick}
       onMouseEnter={(e) => {

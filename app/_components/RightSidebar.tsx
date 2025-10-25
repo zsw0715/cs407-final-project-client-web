@@ -101,13 +101,13 @@ export default function RightSidebar() {
           </p>
           {/* main content */}
           <div 
-            ref={scrollRef}
+            ref={!shouldExpand ? scrollRef : null}
             className="leading-relaxed"
             style={{ 
               overflowY: 'auto',
               height: 'calc(100vh - 165px)',
               borderRadius: '24px',
-              paddingBottom: '150px',
+              paddingBottom: !shouldExpand ? '150px' : '0px',
           }}>
             {activeTab === "map" && <PostFeed />}
             {activeTab === "message" && (
@@ -120,12 +120,14 @@ export default function RightSidebar() {
                   paddingBottom: '0'
                 }}>
                   {/* 左侧会话列表，保持原来的宽度 */}
-                  <div style={{ 
-                    width: '300px',
-                    flexShrink: 0,
-                    overflowY: 'auto',
-                    paddingBottom: '150px',
-                  }}>
+                  <div 
+                    ref={shouldExpand ? scrollRef : null}
+                    style={{ 
+                      width: '302px',
+                      flexShrink: 0,
+                      overflowY: 'auto',
+                      paddingBottom: '150px',
+                    }}>
                     <ConversationList />
                   </div>
                   {/* 右侧会话视图 */}
@@ -150,7 +152,7 @@ export default function RightSidebar() {
             position: "absolute",
             bottom: "1px",
             left: "3px",
-            width: "calc(100% - 6px)",
+            width: "278px",
             transform: activeTab === "profile" ? "translateY(150%) scale(0.9)" : "translateY(0%)",
             transition: "transform 0.5s cubic-bezier(0.34, 1.58, 0.64, 1)"
           }}
