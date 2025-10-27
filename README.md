@@ -2,8 +2,18 @@
 
 ## Introduction
 
-This is the client(web) for the CS407 Final Project.  
-It includes <TODO>  
+This is the web client for the CS407 Final Project, designed specifically for **testing backend APIs** during development. 
+
+### Why Web Client?
+- **Memory efficient**: Uses significantly less memory compared to Android emulator
+- **Development friendly**: Faster iteration and debugging for backend API testing
+- **Cross-platform**: Works on any system with a web browser
+
+### Current Progress
+- ✅ Most basic interfaces implemented
+- ✅ Basic login authentication system
+- ✅ WebSocket connection established
+- 🚧 Backend APIs development should proceed in parallel based on these interfaces
 
 For detailed project information, please refer to our [Project Proposal](./CS407_Project_Proposal.pdf).
 
@@ -13,23 +23,55 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+### Important Note about Next.js 16 Concurrency
+Next.js 16 has locking mechanisms that prevent concurrent access. To test multiple users or concurrent scenarios, you need to **clone multiple instances** of this client.
 
+### Recommended Setup for Testing
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Clone multiple instances for concurrent testing
+git clone <repo-url> knot_client_web_A
+git clone <repo-url> knot_client_web_B
+git clone <repo-url> knot_client_web_C
+# ... clone as many as needed for your testing scenarios
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Running the Development Server
+In each cloned directory, install dependencies and start the server:
+
+```bash
+npm install
+npm run dev
+# or
+yarn install && yarn dev
+# or
+pnpm install && pnpm dev
+# or
+bun install && bun dev
+```
+
+Each instance will run on a different port:
+- First instance: [http://localhost:3000](http://localhost:3000)
+- Second instance: [http://localhost:3001](http://localhost:3001)
+- Third instance: [http://localhost:3002](http://localhost:3002)
+- And so on...
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Backend Development Integration
+
+This web client serves as the primary interface for backend API testing. Backend developers should:
+
+1. **Reference the implemented interfaces** in this client for API specifications
+2. **Develop APIs in parallel** based on the client's interface requirements
+3. **Test with multiple client instances** to simulate concurrent user scenarios
+4. **Use WebSocket connections** for real-time features testing
+
+## Project Structure
+
+- `app/_api/` - API integration layer
+- `app/_components/` - React components for UI
+- `app/_context/` - Context providers (Auth, WebSocket, etc.)
+- `app/_style/` - Custom styling
 
 ## Learn More
 
