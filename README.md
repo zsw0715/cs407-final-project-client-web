@@ -3,6 +3,7 @@
 ## Introduction
 
 This is the web client for the CS407 Final Project, designed specifically for **testing backend APIs** during development. 
+For detailed project information, please refer to our [Project Proposal](./CS407_Project_Proposal.pdf).
 
 ### Why Web Client?
 - **Memory efficient**: Uses significantly less memory compared to Android emulator
