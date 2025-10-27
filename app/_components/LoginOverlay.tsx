@@ -67,9 +67,8 @@ export default function LoginOverlay() {
 
   return (
     <div
-      className={`fixed inset-0 backdrop-blur-sm z-50 flex items-center justify-center transition-opacity duration-700 ease-out ${
-        showOverlay ? "opacity-100" : "opacity-0 pointer-events-none"
-      }`}
+      className={`fixed inset-0 backdrop-blur-sm z-50 flex items-center justify-center transition-opacity duration-700 ease-out ${showOverlay ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
     >
       <div
         className="bg-[#F8F4EE] relative backdrop-blur-sm shadow-lg transition-all duration-300"
@@ -131,6 +130,18 @@ export default function LoginOverlay() {
                 outline: "none",
                 transition: "all 0.25s ease-in-out",
               }}
+              onFocus={(e) => {
+                e.target.style.borderColor = "#6366f1";
+                e.target.style.boxShadow = "0 0 0 2px rgba(99, 102, 241, 0.15)";
+                e.target.style.backgroundColor = "rgba(255, 255, 255, 0.95)";
+                e.target.style.backdropFilter = "blur(12px)";
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = "rgba(203, 213, 225, 0.6)";
+                e.target.style.boxShadow = "none";
+                e.target.style.backgroundColor = "rgba(248, 250, 252, 0.15)";
+                e.target.style.backdropFilter = "blur(8px)";
+              }}
             />
           </div>
 
@@ -167,6 +178,18 @@ export default function LoginOverlay() {
                 fontSize: "14px",
                 outline: "none",
                 transition: "all 0.25s ease-in-out",
+              }}
+              onFocus={(e) => {
+                e.target.style.borderColor = "#6366f1";
+                e.target.style.boxShadow = "0 0 0 2px rgba(99, 102, 241, 0.15)";
+                e.target.style.backgroundColor = "rgba(255, 255, 255, 0.95)";
+                e.target.style.backdropFilter = "blur(12px)";
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = "rgba(203, 213, 225, 0.6)";
+                e.target.style.boxShadow = "none";
+                e.target.style.backgroundColor = "rgba(248, 250, 252, 0.15)";
+                e.target.style.backdropFilter = "blur(8px)";
               }}
             />
           </div>
@@ -206,18 +229,16 @@ export default function LoginOverlay() {
             {/* Tab 按钮 */}
             <div className="absolute inset-0 flex">
               <button
-                className={`flex-1 text-sm font-medium rounded-full transition-colors duration-300 ${
-                  activeTab === "login" ? "text-white" : "text-gray-600"
-                }`}
+                className={`flex-1 text-sm font-medium rounded-full transition-colors duration-300 ${activeTab === "login" ? "text-white" : "text-gray-600"
+                  }`}
                 onClick={() => setActiveTab("login")}
                 style={{ zIndex: 10 }}
               >
                 Login
               </button>
               <button
-                className={`flex-1 text-sm font-medium rounded-full transition-colors duration-300 ${
-                  activeTab === "register" ? "text-white" : "text-gray-600"
-                }`}
+                className={`flex-1 text-sm font-medium rounded-full transition-colors duration-300 ${activeTab === "register" ? "text-white" : "text-gray-600"
+                  }`}
                 onClick={() => setActiveTab("register")}
                 style={{ zIndex: 10 }}
               >
@@ -243,8 +264,8 @@ export default function LoginOverlay() {
               {isLoading
                 ? "..."
                 : activeTab === "login"
-                ? "Login"
-                : "Register"}
+                  ? "Login"
+                  : "Register"}
             </button>
           </div>
         </div>
